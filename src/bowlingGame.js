@@ -3,7 +3,7 @@ class BowlingGame {
 
     }
     score(){
-        
+        return 0;
     }
 } 
 
