@@ -22,6 +22,7 @@ describe("Bowling Game Test", () => {
     rollMany(20, 1);
     expect(game.score()).toEqual(20);
   });
+  
   it("should handle one Spare in a game", () => {
     game.roll(5);
     game.roll(5); // Spare
