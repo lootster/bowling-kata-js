@@ -18,6 +18,10 @@ describe("Bowling Game Test", () => {
     game.roll(5); 
   }
 
+  function rollStrike(game) {
+    game.roll(10);
+  }
+
   it("should test for gutter game", () => {
     rollMany(20, 0);
     expect(game.score()).toEqual(0);
@@ -36,10 +40,12 @@ describe("Bowling Game Test", () => {
   });
 
   it("should handle one Strike in a game", () => {
-    game.roll(10);
+    rollStrike(game);
     game.roll(3);
     game.roll(4);
     rollMany(17, 0);
     expect(game.score()).toEqual(24);
   });
 });
+
+
