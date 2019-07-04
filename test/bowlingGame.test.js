@@ -13,6 +13,11 @@ describe("Bowling Game Test", () => {
     }
   }
 
+  function rollSpare() {
+    game.roll(5);
+    game.roll(5); 
+  }
+
   it("should test for gutter game", () => {
     rollMany(20, 0);
     expect(game.score()).toEqual(0);
@@ -24,8 +29,7 @@ describe("Bowling Game Test", () => {
   });
   
   it("should handle one Spare in a game", () => {
-    game.roll(5);
-    game.roll(5); // Spare
+    rollSpare();
     game.roll(3);
     rollMany(17, 0);
     expect(game.score()).toEqual(16);
