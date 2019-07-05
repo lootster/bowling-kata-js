@@ -18,7 +18,7 @@ describe("Bowling Game Test", () => {
     game.roll(5); 
   }
 
-  function rollStrike(game) {
+  function rollStrike() {
     game.roll(10);
   }
 
@@ -40,7 +40,7 @@ describe("Bowling Game Test", () => {
   });
 
   it("should handle one Strike in a game", () => {
-    rollStrike(game);
+    rollStrike();
     game.roll(3);
     game.roll(4);
     rollMany(17, 0);

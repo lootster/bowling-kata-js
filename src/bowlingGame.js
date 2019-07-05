@@ -6,7 +6,7 @@ class BowlingGame {
   roll(pins) {
     this.rolls.push(pins);
   }
-  
+
   score() {
     let rolls = this.rolls;
     let score = 0;
@@ -44,7 +44,6 @@ function isStrike(rolls, frameIndex) {
 function isSpare(rolls, frameIndex) {
   return rolls[frameIndex] + rolls[frameIndex + 1] === 10;
 }
-
 
 function strikeBonus(rolls, frameIndex) {
   return rolls[frameIndex + 1] + rolls[frameIndex + 2];
