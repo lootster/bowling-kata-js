@@ -1,3 +1,5 @@
+const NUMBER_OF_FRAMES = 10;
+const MAX_SCORE = 10;
 class BowlingGame {
   constructor() {
     this.rolls = [];
@@ -12,15 +14,15 @@ class BowlingGame {
     let score = 0;
     let frameIndex = 0;
 
-    for (let frame = 0; frame < 10; frame++) {
+    for (let frame = 0; frame < NUMBER_OF_FRAMES; frame++) {
       if(isStrike(rolls, frameIndex))
       {
-        score += 10 + strikeBonus(rolls, frameIndex);
+        score += MAX_SCORE + strikeBonus(rolls, frameIndex);
         frameIndex += 1;
       }
       else if (isSpare(rolls, frameIndex)) 
       {
-        score += 10 + spareBonus(rolls, frameIndex);
+        score += MAX_SCORE + spareBonus(rolls, frameIndex);
         frameIndex += 2;
       } 
       else 
@@ -38,11 +40,11 @@ module.exports = BowlingGame;
 
 
 function isStrike(rolls, frameIndex) {
-  return rolls[frameIndex] === 10;
+  return rolls[frameIndex] === MAX_SCORE;
 }
 
 function isSpare(rolls, frameIndex) {
-  return rolls[frameIndex] + rolls[frameIndex + 1] === 10;
+  return rolls[frameIndex] + rolls[frameIndex + 1] === MAX_SCORE;
 }
 
 function strikeBonus(rolls, frameIndex) {
