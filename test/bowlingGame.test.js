@@ -7,50 +7,54 @@ describe("Bowling Game Test", () => {
     game = new BowlingGame();
   });
 
-  function rollMany(nTimesOfRoll, pins) {
+  function rollsWithFramesAndScores(nTimesOfRoll, pins) {
     for (let i = 0; i < nTimesOfRoll; i++) {
       game.roll(pins);
     }
   }
 
+  function rollsWithScores(...pins) {
+    let arr = [...pins];
+    for (let i = 0; i < arr.length; i++) {
+      game.roll(arr[i]);
+    }
+  }
+
   function rollSpare() {
-    game.roll(5);
-    game.roll(5); 
+    rollsWithScores(5, 5);
   }
 
   function rollStrike() {
-    game.roll(10);
+    rollsWithScores(10);
   }
 
   it("should test for gutter game", () => {
-    rollMany(20, 0);
+    rollsWithFramesAndScores(20, 0);
     expect(game.score()).toEqual(0);
   });
 
   it("should return 20 score after a game", () => {
-    rollMany(20, 1);
+    rollsWithFramesAndScores(20, 1);
     expect(game.score()).toEqual(20);
   });
-  
+
   it("should handle one Spare in a game", () => {
     rollSpare();
-    game.roll(3);
-    rollMany(17, 0);
+    rollsWithScores(3);
+    rollsWithFramesAndScores(17, 0);
     expect(game.score()).toEqual(16);
   });
 
+
   it("should handle one Strike in a game", () => {
     rollStrike();
-    game.roll(3);
-    game.roll(4);
-    rollMany(17, 0);
+    rollsWithScores(3, 4);
+    rollsWithFramesAndScores(17, 0);
     expect(game.score()).toEqual(24);
   });
 
   it("should handle a perfect game", () => {
-    rollMany(12, 10);
+    rollsWithFramesAndScores(12, 10);
     expect(game.score()).toEqual(300);
   });
 });
-
-
