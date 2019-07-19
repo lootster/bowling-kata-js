@@ -27,7 +27,7 @@ class BowlingGame {
       } 
       else 
       {
-        score += SumScoreOfEachFrame(rolls, frameIndex);
+        score += sumScoreOfEachFrame(rolls, frameIndex);
         frameIndex += 2;
       }
     }
@@ -55,6 +55,6 @@ function spareBonus(rolls, frameIndex) {
   return rolls[frameIndex + 2];
 }
 
-function SumScoreOfEachFrame(rolls, frameIndex) {
+function sumScoreOfEachFrame(rolls, frameIndex) {
   return rolls[frameIndex] + rolls[frameIndex + 1];
 }
