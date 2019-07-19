@@ -12,23 +12,23 @@ class BowlingGame {
   score() {
     let rolls = this.rolls;
     let score = 0;
-    let frameIndex = 0;
+    let framePointer = 0;
 
     for (let frame = 0; frame < NUMBER_OF_FRAMES; frame++) {
-      if(isStrike(rolls, frameIndex))
+      if(isStrike(rolls, framePointer))
       {
-        score += MAX_SCORE + strikeBonus(rolls, frameIndex);
-        frameIndex += 1;
+        score += scoreOfStrikeFrame(rolls, framePointer);
+        framePointer += 1;
       }
-      else if (isSpare(rolls, frameIndex)) 
+      else if (isSpare(rolls, framePointer)) 
       {
-        score += MAX_SCORE + spareBonus(rolls, frameIndex);
-        frameIndex += 2;
+        score += scoreOfSpareFrame(rolls, framePointer);
+        framePointer += 2;
       } 
       else 
       {
-        score += sumScoreOfEachFrame(rolls, frameIndex);
-        frameIndex += 2;
+        score += scoreOfNormalFrame(rolls, framePointer);
+        framePointer += 2;
       }
     }
 
@@ -38,6 +38,14 @@ class BowlingGame {
 
 module.exports = BowlingGame;
 
+
+function scoreOfStrikeFrame(rolls, frameIndex) {
+  return MAX_SCORE + strikeBonus(rolls, frameIndex);
+}
+
+function scoreOfSpareFrame(rolls, frameIndex) {
+  return MAX_SCORE + spareBonus(rolls, frameIndex);
+}
 
 function isStrike(rolls, frameIndex) {
   return rolls[frameIndex] === MAX_SCORE;
@@ -55,6 +63,6 @@ function spareBonus(rolls, frameIndex) {
   return rolls[frameIndex + 2];
 }
 
-function sumScoreOfEachFrame(rolls, frameIndex) {
+function scoreOfNormalFrame(rolls, frameIndex) {
   return rolls[frameIndex] + rolls[frameIndex + 1];
 }
